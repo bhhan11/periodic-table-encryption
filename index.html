@@ -1,0 +1,1197 @@
+<html>
+    <head>
+        <link rel = "stylesheet" href= "./style.css">
+        <title>Cipher by periodic table</title>
+
+    </head>
+
+    <body>
+        <div id = 'parent' style="background: rgba(251, 146, 230, 0.533);">
+            <div id = 'child' style="background: #2E9afe; float:left;width: 50%; height: 300px;">
+                <div id = 'element1'>
+                    <output style="font-weight:bold;">🔒</output>
+                </div>
+                <div id = 'element1'>
+                    <textarea id = 'plaintext' class = 'write1_css' placeholder="message"></textarea>
+                </div>
+                <div id = 'element1'> 
+                    <textarea id = 'password' class = 'password_css' placeholder="password"></textarea>
+                </div>
+                <div id = 'element1'>
+                    <button id = 'btn1' class= "btn1_css">Encryption</button>
+                </div>
+                <div id = 'left_input'>
+                    <textarea readonly id ='ciphertext' class = 'result1_css'></textarea>
+                </div>
+                <div>
+                    <button id = 'btn_copy' class = 'btn_copy_css'>Copy</button>
+                </div>
+            </div>    
+        
+        
+        
+        
+            <div id = 'child' style="background: #Fa5858; float:left;width: 50%; height: 300px;">
+                <div id = 'element2'>
+                    <output>🔓</output>
+                </div>
+                <div id = 'element2'>
+                    <textarea id = 'ciphertext2' class = 'write2_css' placeholder="paste code"></textarea>
+                </div>
+
+                <div id = 'element2'>
+                    <textarea id = 'password2' class = 'password_css' placeholder="password"></textarea>
+                </div>
+                <div id = 'element2'> 
+                    <button id = 'btn2' class = "btn2_css">Decryption</button>
+                </div>
+                <div id = 'right_input'>
+                    <textarea readonly id = 'plaintext2' class = 'result2_css'></textarea>
+                </div>
+            </div>    
+        </div>
+
+    
+
+        <script>
+    
+            const cp_plaintext = document.querySelector('#plaintext');
+            const cp_password = document.querySelector('#password');
+            const cp_btn1 = document.querySelector('#btn1');
+            const cp_ciphertext = document.querySelector('#ciphertext');
+
+
+            const cp_ciphertext2 = document.querySelector('#ciphertext2');
+            const cp_password2 = document.querySelector('#password2');
+            const cp_btn2 = document.querySelector('#btn2');
+            const cp_plaintext2 = document.querySelector('#plaintext2');
+
+            const cp_btn_copy = document.querySelector('#btn_copy');
+
+           
+           let atom_arry = new Array();
+           let e = 0; // atom_arry 의 index
+           let flag = 0; // atom 함수의 두가지 기능 분리
+           //주기율표 원소 아스키코드 DataBase 
+           const atom = (k)=>{
+                switch(k){ 
+                    case 1:
+                        if(flag === 1){
+                            atom_arry[e] = 72; //H:72
+                            e++
+                        }else{
+                            return 72;
+                        } 
+                        break;
+                    case 2:
+                        if(flag ===1){
+                            atom_arry[e] = 72101;// He:72, 101
+                            e++;
+                        }else{
+                            return 72101;
+                        }
+                        break;    
+                    case 3:
+                        if(flag ===1){
+                            atom_arry[e] = 76105; //Li:76, 105
+                            e++;
+                        }else{
+                            return 76105
+                        }
+                        break;
+                    case 4:
+                        if(flag ===1){
+                            atom_arry[e] = 66101; //Be:66, 101
+                            e++;
+                        }else{
+                            return 66101;
+                        }
+                        break;
+                    case 5:
+                        if(flag ===1){
+                            atom_arry[e] = 66; //B:66
+                            e++;
+                        }else{
+                            return 66;
+                        }
+                        break;
+                    case 6:
+                        if(flag ===1){
+                            atom_arry[e] = 67; //C:67
+                            e++;
+                        }else{
+                            return 67;
+                        }
+                        break;
+                    case 7:
+                        if(flag ===1){
+                            atom_arry[e] = 78; //N:78
+                            e++;
+                        }else{
+                            return 78;
+                        } 
+                        break;
+                    case 8:    
+                        if(flag ===1){
+                            atom_arry[e] = 79;// O:79
+                            e++;
+                        }else{
+                            return 79;
+                        }
+                        break;    
+                    case 9:                    
+                        if(flag ===1){
+                            atom_arry[e] = 70; //F:70
+                            e++;
+                        }else{
+                            return 70;
+                        }
+                        break;
+                    case 10:                        
+                        if(flag ===1){
+                            atom_arry[e] = 78101; //Ne:78, 101
+                            e++;
+                        }else{
+                            return 78101;
+                        }
+                        break;
+                    case 11:                        
+                        if(flag ===1){
+                            atom_arry[e] = 7897; //Na:78, 97
+                            e++;
+                        }else{
+                            return 7897;
+                        }
+                        break;
+                    case 12:                    
+                        if(flag ===1){
+                            atom_arry[e] = 77103; //Mg:77, 103
+                            e++;
+                        }else{
+                            return 77103;
+                        }
+                        break;
+                    case 13:                        
+                        if(flag ===1){
+                            atom_arry[e] = 65108; //Al:65, 108
+                            e++;
+                        }else{
+                            return 65108;
+                        }
+                        break;
+                    case 14:                        
+                        if(flag ===1){
+                            atom_arry[e] = 83105; //Si:83, 105
+                            e++;
+                        }else{
+                            return 83105;
+                        }
+                        break;    
+                    case 15:                        
+                        if(flag ===1){
+                            atom_arry[e] = 80; //P:80
+                            e++;
+                        }else{
+                            return 80;
+                        }
+                        break;
+                    case 16:                        
+                        if(flag ===1){
+                            atom_arry[e] = 83; //S:83
+                            e++;
+                        }else{
+                            return 83;
+                        }
+                        break;
+                    case 17:                        
+                        if(flag ===1){
+                            atom_arry[e] = 67108; //Cl:67, 108
+                            e++;
+                        }else{
+                            return 67108;
+                        }
+                        break;
+                    case 18:                        
+                        if(flag ===1){
+                            atom_arry[e] = 65114; //Ar:65, 114
+                            e++;
+                        }else{
+                            return 65114;
+                        }
+                        break;
+                    case 19:                        
+                        if(flag ===1){
+                            atom_arry[e] = 75; //K:75
+                            e++;
+                        }else{
+                            return 75;
+                        } 
+                        break;
+                    case 20:                        
+                        if(flag ===1){
+                            atom_arry[e] = 6797;// Ca:67, 97
+                            e++;
+                        }else{
+                            return 6797;
+                        }
+                        break;    
+                    case 21:                        
+                        if(flag ===1){
+                            atom_arry[e] = 8399; //Sc: 83, 99
+                            e++;
+                        }else{
+                            return 8399;
+                        }
+                        break;
+                    case 22:                        
+                        if(flag ===1){
+                            atom_arry[e] = 84105; //Ti: 84, 105
+                            e++;
+                        }else{
+                            return 84105;
+                        }
+                        break;
+                    case 23:                        
+                        if(flag ===1){
+                            atom_arry[e] = 86; //V:86
+                            e++;
+                        }else{
+                            return 86;
+                        }
+                        break;
+                    case 24:                        
+                        if(flag ===1){
+                            atom_arry[e] = 67114; //Cr:67, 114
+                            e++;
+                        }else{
+                            return 67114;
+                        }
+                        break;
+                    case 25:                        
+                        if(flag ===1){
+                            atom_arry[e] = 77110; //Mn:77, 110
+                            e++;
+                        }else{
+                            return 77110;
+                        } 
+                        break;
+                    case 26:                        
+                        if(flag ===1){
+                            atom_arry[e] = 70101;//Fe:70, 101
+                            e++;
+                        }else{
+                            return 70101;
+                        }
+                        break;    
+                    case 27:                        
+                        if(flag ===1){
+                            atom_arry[e] = 67111; //Co:67, 111
+                            e++;
+                        }else{
+                            return 67111;
+                        }
+                        break;
+                    case 28:                        
+                        if(flag ===1){
+                            atom_arry[e] = 78105; //Ni:78, 105
+                            e++;
+                        }else{
+                            return 78105;
+                        }
+                        break;
+                    case 29:                    
+                        if(flag ===1){
+                            atom_arry[e] = 67117; //Cu:67, 117
+                            e++;
+                        }else{
+                            return 67117
+                        }
+                        break;
+                    case 30:                        
+                        if(flag ===1){
+                            atom_arry[e] = 90110; //Zn:90, 110
+                            e++;
+                        }else{
+                            return 90110;
+                        }
+                        break;
+                    case 31:                        
+                        if(flag ===1){
+                            atom_arry[e] = 7197; //Ga:71, 97
+                            e++;
+                        }else{
+                            return 7197;
+                        } 
+                        break;
+                    case 32:                        
+                        if(flag ===1){
+                            atom_arry[e] = 71101;//Ge: 71, 101
+                            e++;
+                        }else{
+                            return 71101;
+                        }
+                        break;    
+                    case 33:                        
+                        if(flag ===1){
+                            atom_arry[e] = 65115; //As:65, 115
+                            e++;
+                        }else{
+                            return 65115;
+                        }
+                        break;
+                    case 34:                        
+                        if(flag ===1){
+                            atom_arry[e] = 83101; //Se:83, 101
+                            e++;
+                        }else{
+                            return 83101;
+                        }
+                        break;
+                    case 35:                        
+                        if(flag ===1){
+                            atom_arry[i] = 66114; //Br:66, 114                
+                            e++;
+                        }else{
+                            return 66114;
+                        }
+                        break;
+                    case 36:                        
+                        if(flag ===1){
+                            atom_arry[e] = 75114; //Kr:75, 114
+                            e++;
+                        }else{
+                            return 75114;
+                        }
+                        break;
+                    case 37:                        
+                        if(flag ===1){
+                            atom_arry[e] = 8298; //Rb:82, 98
+                            e++;
+                        }else{
+                            return 8298;
+                        } 
+                        break;
+                    case 38:                        
+                        if(flag ===1){
+                            atom_arry[e] = 83114;//Sr:83, 114
+                            e++;
+                        }else{
+                            return 83114;
+                        }
+                        break;    
+                    case 39:                        
+                        if(flag ===1){
+                            atom_arry[e] = 89; //Y:89
+                            e++;
+                        }else{
+                            return 89;
+                        }
+                        break;
+                    case 40:                        
+                        if(flag ===1){
+                            atom_arry[e] = 90114; //Zr:90, 114
+                            e++;
+                        }else{
+                            return 90114;
+                        }
+                        break;
+                    case 41:                        
+                        if(flag ===1){
+                            atom_arry[e] = 7898; //Nb:78, 98
+                            e++;
+                        }else{
+                            return 7898;
+                        }
+                        break;
+                    case 42:                        
+                        if(flag ===1){
+                            atom_arry[e] = 77111; //Mo:77, 111
+                            e++;
+                        }else{
+                            return 77111;
+                        }
+                        break;
+                    case 43:                        
+                        if(flag ===1){
+                            atom_arry[e] = 8499; //Tc:84, 99
+                            e++;
+                        }else{
+                            return 8499;
+                        } 
+                        break;
+                    case 44:                        
+                        if(flag ===1){
+                            atom_arry[e] = 82117;//Ru:82, 117
+                            e++;
+                        }else{
+                            return 82117;
+                        }
+                        break;    
+                    case 45:                        
+                        if(flag ===1){
+                            atom_arry[e] = 82104; //Rh:82, 104
+                            e++;
+                        }else{
+                            return 82104;
+                        }
+                        break;
+                    case 46:                        
+                        if(flag ===1){
+                            atom_arry[e] = 80100; //Pd:80, 100
+                            e++;
+                        }else{
+                            return 80100;
+                        }
+                        break;
+                    case 47:                        
+                        if(flag ===1){
+                            atom_arry[e] = 65103; //Ag:65, 103
+                            e++;
+                        }else{
+                            return 65103;
+                        }
+                        break;
+                    case 48:                        
+                        if(flag ===1){
+                            atom_arry[e] = 67100; //Cd:67, 100
+                            e++;
+                        }else{
+                            return 67100;
+                        }
+                        break;
+                    case 49:                        
+                        if(flag ===1){
+                            atom_arry[e] = 73110; //In:73, 110
+                            e++;
+                        }else{
+                            return 73110;
+                        } 
+                        break;
+                    case 50:                        
+                        if(flag ===1){
+                            atom_arry[e] = 83110;//Sn:83, 110
+                            e++;
+                        }else{
+                            return 83110;
+                        }
+                        break;    
+                    case 51:                        
+                        if(flag ===1){
+                            atom_arry[e] = 8398; //Sb:83, 98
+                            e++;
+                        }else{
+                            return 8398;
+                        }
+                        break;
+                    case 52:                        
+                        if(flag ===1){
+                            atom_arry[e] = 84101; //Te:84, 101
+                            e++;
+                        }else{
+                            return 84101;
+                        }
+                        break;
+                    case 53:                        
+                        if(flag ===1){
+                            atom_arry[e] = 73; //I:73
+                            e++;
+                        }else{
+                            return 73;
+                        }
+                        break;
+                    case 54:                        
+                        if(flag ===1){
+                            atom_arry[e] = 88101; //Xe:88, 101
+                            e++;
+                        }else{
+                            return 88101;
+                        }
+                        break;
+                    case 55:                        
+                        if(flag ===1){
+                            atom_arry[e] = 67115; //Cs:67, 115
+                            e++;
+                        }else{
+                            return 67115;
+                        } 
+                        break;
+                    case 56:                        
+                        if(flag ===1){
+                            atom_arry[e] = 6697;//Ba:66, 97
+                            e++;
+                        }else{
+                            return 6697;
+                        }
+                        break;    
+                    case 57:                        
+                        if(flag ===1){
+                            atom_arry[e] = 7697; //La:76, 97
+                            e++;
+                        }else{
+                            return 7697;
+                        }
+                        break;
+                    case 58:                        
+                        if(flag ===1){
+                            atom_arry[e] = 67101; //Ce:67, 101
+                            e++;
+                        }else{
+                            return 67101;
+                        }
+                        break;
+                    case 59:                        
+                        if(flag ===1){
+                            atom_arry[e] = 80114; //Pr:80, 114
+                            e++;
+                        }else{
+                            return 80114;
+                        }
+                        break;
+                    case 60:                        
+                        if(flag ===1){
+                            atom_arry[e] = 78100; //Nd:78, 100
+                            e++;
+                        }else{
+                            return 78100;
+                        }
+                        break;
+                    case 61:                        
+                        if(flag ===1){
+                            atom_arry[e] = 80109; //Pm:80, 109
+                            e++;
+                        }else{
+                            return 80109;
+                        } 
+                        break;
+                    case 62:                        
+                        if(flag ===1){
+                            atom_arry[e] = 83109;//Sm:83, 109                        
+                            e++;
+                        }else{
+                            return 83109;
+                        }
+                        break;    
+                    case 63:                        
+                        if(flag ===1){
+                            atom_arry[e] = 69117; //Eu:69, 117
+                            e++;
+                        }else{
+                            return 69117;
+                        }
+                        break;
+                    case 64:                        
+                        if(flag ===1){
+                            atom_arry[e] = 71100; //Gd:71, 100
+                            e++;
+                        }else{
+                            return 71100;
+                        }
+                        break;
+                    case 65:                        
+                        if(flag ===1){
+                            atom_arry[e] = 8498; //Tb:84, 98
+                            e++;
+                        }else{
+                            return 8498;
+                        }
+                        break;
+                    case 66:                        
+                        if(flag ===1){
+                            atom_arry[e] = 68121; //Dy:68, 121
+                            e++;
+                        }else{
+                            return 68121;
+                        }
+                        break;
+                    case 67:                        
+                        if(flag ===1){
+                            atom_arry[e] = 72111; //Ho:72, 111
+                            e++;
+                        }else{
+                            return 72111;
+                        } 
+                        break;
+                    case 68:                        
+                        if(flag ===1){
+                            atom_arry[e] = 69114;//Er:69, 114
+                            e++;
+                        }else{
+                            return 69114;
+                        }
+                        break;    
+                    case 69:                        
+                        if(flag ===1){
+                            atom_arry[e] = 84109; //Tm:84, 109
+                            e++;
+                        }else{
+                            return 84109;
+                        }
+                        break;
+                    case 70:                        
+                        if(flag ===1){
+                            atom_arry[e] = 89109; //Yb:89, 109
+                            e++;
+                        }else{
+                            return 89109;
+                        }                        
+                        break;
+                    case 71:                        
+                        if(flag ===1){
+                            atom_arry[e] = 76117; //Lu:76, 117
+                            e++;
+                        }else{
+                            return 76117;
+                        }
+                        break;
+                    case 72:                        
+                        if(flag ===1){
+                            atom_arry[e] = 72102; //Hf:72, 102
+                            e++;
+                        }else{
+                            return 72102;
+                        }
+                        break;
+                    case 73:                        
+                        if(flag ===1){
+                            atom_arry[e] = 8497; //Ta:84, 97
+                            e++;
+                        }else{
+                            return 8497;
+                        } 
+                        break;
+                    case 74:                        
+                        if(flag ===1){
+                            atom_arry[e] = 87; //W:87
+                            e++;
+                        }else{
+                            return 87;
+                        }
+                        break;    
+                    case 75:                        
+                        if(flag ===1){
+                            atom_arry[e] = 82101; //Re:82, 101
+                            e++;
+                        }else{
+                            return 82101;
+                        }
+                        break;
+                    case 76:                        
+                        if(flag ===1){
+                            atom_arry[e] = 79115; //Os:79, 115
+                            e++;
+                        }else{
+                            return 79115;
+                        }
+                        break;
+                    case 77:
+                        if(flag ===1){
+                            atom_arry[e] = 73114; //Ir:73, 114
+                            e++;
+                        }else{
+                            return 73114;
+                        }
+                        break;
+                    case 78:                        
+                        if(flag ===1){
+                            atom_arry[e] = 80116; //Pt:80, 116
+                            e++;
+                        }else{
+                            return 80116;
+                        }
+                        break;
+                    case 79:                        
+                        if(flag ===1){
+                            atom_arry[e] = 65117; //Au:65, 117
+                            e++;
+                        }else{
+                            return 65117;
+                        } 
+                        break;
+                    case 80:                        
+                        if(flag ===1){
+                            atom_arry[e] = 72103;//Hg:72, 103
+                            e++;
+                        }else{
+                            return 72103;
+                        }
+                        break;    
+                    case 81:
+                        if(flag ===1){
+                            atom_arry[e] = 84108; //Tl:84, 108
+                            e++;
+                        }else{
+                            return 84108;
+                        }
+                        break;
+                    case 82:
+                        if(flag ===1){
+                            atom_arry[e] = 8098; //Pb:80, 98
+                            e++;
+                        }else{
+                            return 8098;
+                        }
+                        break;
+                    case 83:
+                        if(flag ===1){
+                            atom_arry[e] = 66105; //Bi:66, 105
+                            e++;
+                        }else{
+                            return 66105;
+                        }
+                        break;
+                    case 84:                        
+                        if(flag ===1){
+                            atom_arry[e] = 80111; //Po:80, 111
+                            e++;
+                        }else{
+                            return 80111;
+                        }
+                        break;
+                    case 85:                        
+                        if(flag ===1){
+                            atom_arry[e] = 65116; //At:65, 116
+                            e++;
+                        }else{
+                            return 65116;
+                        } 
+                        break;
+                    case 86:
+                        if(flag ===1){
+                            atom_arry[e] = 82110;//Rn:82, 110
+                            e++;
+                        }else{
+                            return 82110;
+                        }
+                        break;    
+                    case 87:                        
+                        if(flag ===1){
+                            atom_arry[e] = 70114; //Fr:70, 114
+                            e++;
+                        }else{
+                            return 70114;
+                        }
+                        break;
+                    case 88:                        
+                        if(flag ===1){
+                            atom_arry[e] = 8297; //Ra:82, 97
+                            e++;
+                        }else{
+                            return 8297;
+                        }
+                        break;
+                    case 89:                        
+                        if(flag ===1){
+                            atom_arry[e] = 6599; //Ac:65, 99
+                            e++;
+                        }else{
+                            return 6599;
+                        }
+                        break;
+                    case 90:                        
+                        if(flag ===1){
+                            atom_arry[e] = 84104; //Th:84, 104
+                            e++;
+                        }else{
+                            return 84104;
+                        }
+                        break;
+                    case 91:
+                        if(flag ===1){
+                            atom_arry[e] = 8097; //Pa:80, 97
+                            e++;
+                        }else{
+                            return 8097;
+                        } 
+                        break;
+                    case 92:                        
+                        if(flag ===1){
+                            atom_arry[e] = 85; //U:85
+                            e++;
+                        }else{
+                            return 85;
+                        }
+                        break;    
+                    case 93:                        
+                        if(flag ===1){
+                            atom_arry[e] = 78112; //Np:78, 112
+                            e++;
+                        }else{
+                            return 78112;
+                        }
+                        break;
+                    case 94:                        
+                        if(flag ===1){
+                            atom_arry[e] = 80117; //Pu:80, 117
+                            e++;
+                        }else{
+                            return 80117;
+                        }
+                        break;
+                    case 95:                        
+                        if(flag ===1){
+                            atom_arry[e] = 65109; //Am:65, 109
+                            e++;
+                        }else{
+                            return 65109;
+                        }
+                        break;
+                    case 96:                        
+                        if(flag ===1){
+                            atom_arry[e] = 67109; //Cm:67, 109
+                            e++;
+                        }else{
+                            return 67109;
+                        }
+                        break;
+                    case 97:
+                        if(flag ===1){
+                            atom_arry[e] = 66107; //Bk:66, 107
+                            e++;
+                        }else{
+                            return 97;
+                        } 
+                        break;
+                    case 98:
+                        if(flag ===1){
+                            atom_arry[e] = 67102;//Cf:67, 102
+                            e++;
+                        }else{
+                            return 67102;
+                        }
+                        break;    
+                    case 99:                        
+                        if(flag ===1){
+                            atom_arry[e] = 69115; //Es:69, 115
+                            e++;
+                        }else{
+                            return 69115;
+                        }
+                        break;
+                    case 100:                        
+                        if(flag ===1){
+                            atom_arry[e] = 70109; //Fm:70, 109
+                            e++;
+                        }else{
+                            return 70109;
+                        }
+                        break;
+                    case 101:                        
+                        if(flag ===1){
+                            atom_arry[e] = 77100; //Md:77, 100
+                            e++;
+                        }else{
+                            return 77100;
+                        }
+                        break;
+                    case 102:                        
+                        if(flag ===1){
+                            atom_arry[e] = 78111; //No:78, 111
+                            e++;
+                        }else{
+                            return 78111;
+                        }
+                        break;
+                    case 103:                        
+                        if(flag ===1){
+                            atom_arry[e] = 76114; //Lr:76, 114
+                            e++;
+                        }else{
+                            return 76114;
+                        } 
+                        break;
+                    case 104:                        
+                        if(flag ===1){
+                            atom_arry[e] = 82102;//Rf:82, 102
+                            e++;
+                        }else{
+                            return 82102;
+                        }
+                        break;    
+                    case 105:                        
+                        if(flag ===1){
+                            atom_arry[e] = 6898; //Db:68, 98
+                            e++;
+                        }else{
+                            return 6898;
+                        }
+                        break;
+                    case 106:                        
+                        if(flag ===1){
+                            atom_arry[e] = 83103; //Sg:83, 103
+                            e++;
+                        }else{
+                            return 83103;
+                        }
+                        break;
+                    case 107:                        
+                        if(flag ===1){
+                            atom_arry[e] = 66104; //Bh:66, 104
+                            e++;
+                        }else{
+                            return 66104;
+                        }
+                        break;
+                    case 108:                        
+                        if(flag ===1){
+                            atom_arry[e] = 72115; //Hs:72, 115
+                            e++;
+                        }else{
+                            return 72115;
+                        }
+                        break;
+                    case 109:                        
+                        if(flag ===1){
+                            atom_arry[e] = 77116; //Mt:77, 116
+                            e++;
+                        }else{
+                            return 77116;
+                        }
+                        break;
+                    case 110:                        
+                        if(flag ===1){
+                            atom_arry[e] = 68115;//Ds:68, 115
+                            e++;
+                        }else{
+                            return 68115;
+                        }
+                        break;    
+                    case 111:                        
+                        if(flag ===1){
+                            atom_arry[i] = 82103; //Rg: 82, 103
+                            e++;
+                        }else{
+                            return 82103;
+                        }
+                        break;
+                    case 112:                        
+                        if(flag ===1){
+                            atom_arry[e] = 67110; //Cn:67, 110
+                            e++;
+                        }else{
+                            return 67110;
+                        }
+                        break;
+                    case 113:                        
+                        if(flag ===1){
+                            atom_arry[e] = 78104; //Nh:78, 104
+                            e++;
+                        }else{
+                            return 78104;
+                        }
+                        break;
+                    case 114:                        
+                        if(flag ===1){
+                            atom_arry[e] = 70108; //Fl:70, 108
+                            e++;
+                        }else{
+                            return 70108;
+                        }
+                        break;
+                    case 115:                        
+                        if(flag ===1){
+                            atom_arry[e] = 7799; //Mc:77,99
+                            e++;
+                        }else{
+                            return 7799;
+                        } 
+                        break;
+                    case 116:                        
+                        if(flag ===1){
+                            atom_arry[e] = 76118; //Lv:76, 118
+                            e++;
+                        }else{
+                            return 76118;
+                        }
+                        break;    
+                    case 117:                        
+                        if(flag ===1){
+                            atom_arry[e] = 84115; //Ts:84, 115
+                            e++;
+                        }else{
+                            return 84115;
+                        }
+                        break;
+                    case 118:                        
+                        if(flag ===1){
+                            atom_arry[e] = 79103; //Og:79, 103
+                            e++;
+                        }else{
+                            return 79103;
+                        }
+                        break;                                                                             
+                };
+            };
+
+
+            ///////////////////////////////////////////////////////////////////////////////
+            //Encryption///////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////////
+
+            const except_16 = "ghijklmnopqrstuvwxyz";
+            const add_random = (before)=>{
+                let random_num = except_16.charAt(Math.floor(Math.random()*except_16.length));
+                let after = before.concat(random_num);
+                return after;               
+            };
+
+            let password_mul_key_arry = new Array();
+            let ciphertext_arry_yet = new Array();
+            let ciphertext_arry = new Array();
+            let new_password_arry = new Array();
+
+            cp_btn1.addEventListener('click', ()=>{
+                let plaintext_arry = cp_plaintext.value.split("");//평문을 한단어씩 배열에 넣기
+                let password_arry = cp_password.value.split("");//비번을 한단어씩 배열에 넣기
+                let add_arry_number = cp_plaintext.value.length - cp_password.value.length;
+
+                //비번배열을 아스키코드로 바꾼후, atom 함수를이용해 원자의 아스키코드로 변환해 그들을 모두 더한값(= key) 값구하기
+                //atom함수를 이용해 key 값을 구하게되면 flag = 1 로 바꾼다
+                //atom함수는 flag 가 0일땐 원자의 아스키코드를 반환하고, flag 가 1일때는 atom_arry를 만든다
+                let key = 0;
+                for(let i = 0; i < password_arry.length; i++){
+                    flag = 0;
+                    key += atom((password_arry[i].charCodeAt(0) % 118) + 1);
+                    
+                    if(i === (password_arry.length - 1)){
+                        flag = 1;
+                    }
+                }    
+               
+                //비번 배열에 평문배열 개수에 맞게 비번배열 채워넣기
+                //이때 new_password_arry가 새롭게 정의함
+                //(ex) perfume -->  perfumeperfumpe
+                for(let i = 0; i < cp_plaintext.value.length; i++){
+                        new_password_arry[i] = password_arry[i%cp_password.value.length];      
+                    };
+
+                //평문배열 , 비번배열 의 각각의 값들을 유니코드로 변환, 
+                for(let i = 0; i < plaintext_arry.length; i++){
+                    plaintext_arry[i] = plaintext_arry[i].charCodeAt(0);
+                    new_password_arry[i] = new_password_arry[i].charCodeAt(0);  
+                }
+                
+                //길이가 맞춰진 비번배열 의 각각의 원소들에 key 값을 곱해서 mod118 + 1 을 취한다 
+                for(let i = 0; i < plaintext_arry.length;i++){
+                    password_mul_key_arry[i] = ((new_password_arry[i]* key) % 118) + 1; 
+                }
+                
+
+                //atom_arry 완성시키기 . 각 원자번호의 원소명의 아스키코드값이 atom_arry에 저장된다
+                //atom_arry는 암호화의 핵심이되는 알고리즘이다
+                for(let i = 0; i < plaintext_arry.length; i++){
+                    atom(password_mul_key_arry[i]);    
+                }
+
+    
+                //atom_arry 와 평문의 각각의 단어단위로 곱해서 16진법으로 변환해서 암호문 1차 완성
+                for(let i = 0;i< plaintext_arry.length;i++){
+                    ciphertext_arry_yet[i] = (plaintext_arry[i] * atom_arry[i]).toString(16);
+                }
+
+
+                //1차 완성된 ciphertext_arry_yet 에 각 단어마다 구분을 짓기위해 사이사이에 랜덤문자열 추가해주는과정
+                //이로써 최종 암호문 ciphertext_arry 가 완성됨
+                for(let i = 0;i<plaintext_arry.length;i++){
+                    ciphertext_arry[i] = add_random(ciphertext_arry_yet[i]);
+                }
+
+
+                //배열로 정의된 암호문을 join 을 이용해 합쳐져서 화면에 출력해주는 모습
+                cp_ciphertext.value = ciphertext_arry.join('');    
+            });
+
+            
+            cp_btn_copy.addEventListener('click', ()=>{
+                let obj = document.getElementById('ciphertext');
+                obj.select();
+                obj.setSelectionRange(0,99999);
+                document.execCommand("copy");
+                obj.setSelectionRange(0,0);
+                alert("Copied");
+            });
+
+
+
+            /////////////////////////////////////////////////////////////////////////////////////
+            //Decryption/////////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////////////////
+            let onion0_arry = new Array();
+            let secret_arry = new Array();
+            let new_secret_arry = new Array();
+            let new_secret_mul_key = new Array(); // 뉴_시크릿 배열 * key (mod 119)
+            let atom_arry2 = new Array();
+            let onion1_arry = new Array();
+            let plaintext2_arry = new Array();
+
+            cp_btn2.addEventListener('click', ()=>{
+                let temp_arry = cp_ciphertext2.value.split(/[g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z]/);
+                //temp_arry 의 마지막 배열에 null값이 저장됨으로 length 길이에 주의하기(실제 길이보다 1크다)
+                let temp2_arry = cp_password2.value.split("");
+                
+                let real_c_length = (temp_arry.length) - 1;
+
+                //16진수 암호문 배열을 아스키코드로(string) 변환하여 onion0_arry 완성하기
+                for(let i = 0; i < real_c_length; i++){
+                    onion0_arry[i] = parseInt(temp_arry[i], 16);
+                }
+                
+
+                //비번 배열을 아스키코드로 변환하여 secret_arry 완성하기
+                for(let i  = 0; i < temp2_arry.length; i++){
+                    secret_arry[i] = temp2_arry[i].charCodeAt(0);    
+                }
+
+                //아스키코드로 변형된 비번배열을 mod118 + 1하여 atom 함수와 맵핑하여 대응 원자아이스코드 값을 다 더해서 
+                //secret_key에 저장
+                //secret_key 구하는 알고리즘
+                //flag 다시 1로 만들어줌
+                let secret_key = 0;
+                for(let i = 0; i < secret_arry.length; i++){
+                    flag = 0;
+                    secret_key += atom((secret_arry[i] % 118) + 1)
+                    if(i === (secret_arry.length - 1)){
+                        flag = 1;
+                    }
+                }
+
+                //new_secret_arry 생성 하기
+                //(ex) p e r f u m e p e r
+                let add_arry_number2 = real_c_length - cp_password2.value.length;
+                
+                for(let i = 0; i < real_c_length; i++){
+                    new_secret_arry[i] = secret_arry[i % cp_password2.value.length] 
+                }
+
+
+                //new_secret_mul_key 생성. 뉴시크릿배열 * secret_key (mode 119 + 1)
+                for(let i  = 0; i < real_c_length; i++){
+                    new_secret_mul_key[i] = ((new_secret_arry[i]*secret_key) % 118) + 1;
+                }
+
+
+                //atom_arry2 만들기
+                //암호 풀이에 핵심이 되는 key 다
+                for(let i = 0; i < real_c_length; i++){
+                    flag = 0;
+                    atom_arry2[i] = atom(new_secret_mul_key[i]);
+                }
+
+                //onion1_arry 만들기.
+                //onion0_arry 를 atom_arry2 로 나눠주기
+                for(let i  = 0; i < real_c_length; i++){
+                    onion1_arry[i] = onion0_arry[i] / atom_arry2[i];
+                }
+
+
+                //아스키코드로 이루워진 onion1_arry 를 문자로 변환
+                for(let i = 0; i < real_c_length; i++){
+                    plaintext2_arry[i] = String.fromCharCode(onion1_arry[i]);
+                }
+
+                cp_plaintext2.value = plaintext2_arry.join('');    
+
+            })          
+
+        </script>
+    </body>    
+</html>

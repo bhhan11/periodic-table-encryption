@@ -1,0 +1,81 @@
+
+body{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.write1_css{
+    width : 200px;
+    height: 204px;
+}
+
+.write2_css{
+    width : 200px;
+    height: 20px;
+}
+
+.password_css{
+    width: 200px;
+    height: 20px;
+}
+
+
+
+
+.btn1_css{
+    width: 200px;
+    height: 21;
+    font-weight: bold;
+
+}
+
+.btn_copy_css{
+    width: 200px;
+    height: 18;
+    font-weight: bold;
+}
+
+.btn2_css{
+    width: 200px;
+    height: 21;
+    font-weight: bold;
+}
+
+.result1_css{
+    width: 200px;
+    height: 20px; 
+}
+
+.result2_css{
+    width: 200px;
+    height: 220px;
+}
+
+.left_input{
+    text-align: center;
+    margin: 0 auto;
+    display: flex;
+}
+
+.right_input{
+    text-align: center;
+    margin: 0 auto;
+    display: flex;
+}
+
+/*
+.parent {
+    display: flex;
+}
+
+.child {
+    flex: 1;
+}
+*/
+
